@@ -7,13 +7,8 @@ class Snake:
         self.direction = 'right'
         self.has_food = False
 
-        print(self.position)
-
     def give_food(self):
-        ''' Alimenta a la serpiente
-
-        Cambia a verdadero la propiedad 'has_food' que determina si la serpiente
-        debe crecer en su siguiente movimiento
+        ''' Alimenta a la serpiente para que crezca
 
         '''
 
@@ -57,8 +52,6 @@ class Snake:
         else:
             self.has_food = False
 
-        print(self.position)
-
     def change_direction(self, new_direction):
         ''' Cambia la dirección de la serpiente
 
@@ -72,9 +65,17 @@ class Snake:
             self.direction = new_direction
         elif new_direction == 'left' and self.direction != 'right':
             self.direction = new_direction
-        elif new_direction == 'top' and self.direction != 'down':
+        elif new_direction == 'up' and self.direction != 'down':
             self.direction = new_direction
         elif new_direction == 'down' and self.direction != 'up':
             self.direction = new_direction
 
-        print(self.direction)
+    def biting_tail(self):
+        head = self.position[0]
+
+        for i in range(1, len(self.position)):
+            if all(self.position[i] == head):
+                print('Mordio su cola')
+                return True
+
+        return False
